@@ -71,7 +71,8 @@ static NSString *const CHANNEL_NAME = @"PonnamKarthik/fluttertoast";
 //        NSNumber *size = call.arguments[@"size"];
         NSNumber *fontSize = call.arguments[@"fontSize"];
 
-        if ([fontSize isKindOfClass:[NSNull class]]) {
+        if (![msg isKindOfClass:[NSNull class]]) {
+            if ([fontSize isKindOfClass:[NSNull class]]) {
             fontSize = [[NSNumber alloc] initWithInt:16];
         }
         
@@ -108,6 +109,7 @@ static NSString *const CHANNEL_NAME = @"PonnamKarthik/fluttertoast";
             
             [self makeToast:msg duration:time position:CSToastPositionBottom style:style];
             
+        }
         }
         result([NSNumber numberWithBool:true]);
 
